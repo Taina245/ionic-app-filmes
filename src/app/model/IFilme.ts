@@ -9,7 +9,7 @@ export interface IFilme{
   pagina?: string; //** a ? indica que o campo nao é obrigatorio*/
   favorito: boolean;
 }
-export interface ICartaz{
+export interface ISeries{
   nome: string;
   lancamento: string;
   duracao: string;
@@ -24,6 +24,8 @@ export interface IAtores{
   foto: string;
   idade: number;
   filmes: string[];
+  series: string[];
   favorito: boolean;
 
 }
+
