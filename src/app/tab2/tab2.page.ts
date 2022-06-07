@@ -1,10 +1,7 @@
-import { ICartaz } from './../model/IFilme';
-import { FilmeDetalhePage } from './../filme-detalhe/filme-detalhe.page';
-import { NavigationExtras, Router } from '@angular/router';
-/* eslint-disable @typescript-eslint/member-ordering */
 import { Component } from '@angular/core';
+import { ISeries } from '../model/IFilme';
 import { AlertController, ToastController } from '@ionic/angular';
-
+import { NavigationExtras, Router } from '@angular/router';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -13,87 +10,100 @@ import { AlertController, ToastController } from '@ionic/angular';
 export class Tab2Page {
 
   constructor(public router: Router,
-                    public alertController: AlertController,
-                    public toastController: ToastController) {}
+    public alertController: AlertController,
+    public toastController: ToastController) {}
 
-  listaSeries: ICartaz[] = [
-    {
-      nome: 'Cavaleiro da Lua (2022)',
-      lancamento: '30/03/2022',
-      duracao: '47m/Ep',
-      classificacao: 8.2,
-      cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/tkc7AVyUoG9VEeDvukN0TVqa24C.jpg',
-      generos: ['Action & Adventure', 'Sci-Fi & Fantasy', 'Mistério'],
-      pagina: '/cavaleiro-lua',
-      favorito: false
-    },
-    {
-      nome: 'Halo (2022)',
-      lancamento: '24/03/2022 (BR)',
-      duracao: '1h/Ep',
-      classificacao: 8.6,
-      cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/eO0QV5qJaEngP1Ax9w3eV6bJG2f.jpg',
-      generos: ['Action & Adventure', 'Sci-Fi & Fantasy'],
-      pagina: '/halo',
-      favorito: false
-    },
-    {
-      nome: 'Chaves (1973)',
-      lancamento: '1973 (MEX)',
-      duracao: '23m/Ep',
-      classificacao: 7.8,
-      cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8D8rR5UgZlhLZ5k3cnMNTtYA8Wn.jpg',
-      generos: ['Comédia', 'Família'],
-      pagina: '/chaves',
-      favorito: false
-    },
-    {
-      nome: 'Arcane (2021)',
-      lancamento: '06/11/2021',
-      duracao: '39m/Ep',
-      classificacao: 9.1,
-      cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oJagOzBu9Rdd9BrciseCm3U3MCU.jpg',
-      generos: ['Animação', 'Crime'],
-      pagina: '/arcane',
-      favorito: false
-    }
-  ];
-  exibirFilme(filme: ICartaz){
-    const navigationExtras: NavigationExtras = {state:{paramFilme:filme}};
-    this.router.navigate(['filme-detalhe'],navigationExtras);
-  }
-
-  async exibirAlertaFavorito(filme: ICartaz) {
-    const alert = await this.alertController.create({
-
-      header: 'Meus Favoritos',
-      message: 'Deseja realmente favoritar o filme?',
-      buttons: [
-        {
-          text: 'Não',
-          role: 'cancel',
-          handler: () => {
-            filme.favorito=false;
-          }
-        }, {
-          text: 'Sim, favoritar.',
-          handler: () => {
-            filme.favorito=true;
-            this.apresentarToast();
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-
-  async apresentarToast() {
-    const toast = await this.toastController.create({
-      message: 'Filme adicionado aos favoritos...',
-      duration: 2000,
-      color: 'success',
-      position: 'top'
-    });
-    toast.present();
-  }
+// eslint-disable-next-line @typescript-eslint/member-ordering
+listaSeries: ISeries[] = [
+{
+nome: 'Criando Dion (202)',
+lancamento: '15/04/2021',
+duracao: '1h50m',
+classificacao: 9,
+cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/w8BVC3qrCWCiTHRz4Rft12dtQF0.jpg',
+generos: ['Ação', 'Fantasia', 'Aventura'],
+pagina: '/mortal-kombat',
+favorito: true
+},
+{
+nome: 'Vingadores: Ultimato (2019)',
+lancamento: '25/04/2019',
+duracao: '3h01m',
+classificacao: 6,
+cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/q6725aR8Zs4IwGMXzZT8aC8lh41.jpg',
+generos: ['Aventura', 'Ficção científica', 'Ação'],
+pagina: '/avengers',
+favorito: false
+},
+{
+nome: 'Crepúsculo (2008)',
+lancamento: '21/11/2008',
+duracao:'2h01min',
+classificacao: 9,
+cartaz:'https://www.themoviedb.org/t/p/original/sgxHeCZE3H9n5jQFumQPs9HBnTV.jpg',
+generos:['Fantasia','Romance'],
+pagina:'/crepusculo',
+favorito: false
+},
+{
+nome: 'Gente Grande (2010)',
+lancamento: '24/09/2010',
+duracao:'1h42min',
+classificacao: 6,
+cartaz:'https://www.themoviedb.org/t/p/original/3NqLgW0xqp6mpj1OUTNdvxHZ71g.jpg',
+generos:['Comédia','Buddy'],
+pagina:'/Gente-Grande',
+favorito: false
+},
+{
+nome: 'Cidade Dos Homens (2008)',
+lancamento: '31/08/2008',
+duracao:'1h50min',
+classificacao: 9,
+cartaz:'https://www.themoviedb.org/t/p/w220_and_h330_face/7fNhBXNhqd6AVRHMcVvAF1py4Mh.jpg',
+generos:['Drama','Ficcção policial'],
+pagina:'/cidade-dos-homens',
+favorito: false
 }
+];
+exibirFilme(filme: ISeries){
+const navigationExtras: NavigationExtras = {state:{paramFilme:filme}};
+this.router.navigate(['filme-detalhe'],navigationExtras);
+}
+
+async exibirAlertaFavorito(filme: ISeries) {
+const alert = await this.alertController.create({
+
+header: 'Meus Favoritos',
+message: 'Deseja realmente favoritar o filme?',
+buttons: [
+{
+text: 'Não',
+role: 'cancel',
+handler: () => {
+filme.favorito=false;
+}
+}, {
+text: 'Sim, favoritar.',
+handler: () => {
+filme.favorito=true;
+this.apresentarToast();
+}
+}
+]
+});
+await alert.present();
+}
+
+async apresentarToast() {
+const toast = await this.toastController.create({
+message: 'Filme adicionado aos favoritos...',
+duration: 2000,
+color: 'success',
+position: 'top'
+});
+toast.present();
+}
+}
+
+
